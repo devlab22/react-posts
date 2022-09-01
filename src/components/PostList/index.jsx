@@ -1,52 +1,45 @@
-import React, { useState } from 'react';
-import { PostItem, MyButton, MyInput } from '../../components';
+import React from 'react';
+import { PostItem, PostForm, MySelect } from '../../components';
 
 import './PostList.scss';
 
-export default function PostList({ items, title, AddNewPost, removePost }) {
+export default function PostList({ items, title, AddNewPost, removePost, defaultPost='posts not found' }) {
 
-  const [newTitle, setTitle] = useState('');
-  const [description, setDescription] = useState('');
-
-  const handleOnAddNewPost = (e) => {
-    e.preventDefault();
+  const handleOnAddNewPost = (post) => {
+    
     AddNewPost(
       {
         'id': Math.max(...items.map(o => o.id)) + 1,
-        'title': newTitle,
-        'text': description
+        'title': post.title,
+        'text': post.text
       }
     );
-    setTitle('');
-    setDescription('');
+    
   }
 
   return (
     <div className='postList'>
 
-      <h1>add new post for {title}</h1>
-      <form>
-        <MyInput
-          type="text"
-          placeholder="title"
-          value={newTitle}
-          onChange={event => setTitle(event.target.value)}
-        />
-        <MyInput
-          type="text"
-          placeholder="description"
-          value={description}
-          onChange={(event) => setDescription(event.target.value)}
-        />
-        <MyButton onClick={handleOnAddNewPost} >add post</MyButton>
-      </form>
+      <PostForm title={`add new post for ${title}`} onAddNewPost={handleOnAddNewPost}/>
+      <hr/>
+      
+      <MySelect 
+          options={[
+        {'key': 'id', 'value': 'id'},
+        {'key': 'title', 'value': 'Title'},
+        {'key': 'descr', 'value': 'Description'}
+          ]}
+        defaultValue='Sorting by'  
+          />
 
       <h1>{title}</h1>
 
       {
-        items.map(item =>
+        items.length > 0 
+         ? (items.map(item =>
           <PostItem key={item.id} {...item} removePost={removePost}/>
-        )
+        ))
+        : <h2>{defaultPost}</h2>
       }
     </div>
   )

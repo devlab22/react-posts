@@ -1,4 +1,5 @@
 import React from 'react';
+import { MyButton } from '../../components';
 
 import './PostItem.scss';
 
@@ -10,7 +11,7 @@ export default function PostItem({id, title, text, removePost}) {
                 <div>{text}</div>
             </div>
             <div className="post__btn">
-                <button onClick={() => removePost(id)}>delete</button>
+                <MyButton onClick={() => removePost(id)}>delete</MyButton>
             </div>
         </div>
     )
