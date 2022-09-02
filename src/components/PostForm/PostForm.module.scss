@@ -1,8 +1,18 @@
-.postForm{
+.postForm {
     margin-top: 15px;
     width: 800px;
+    border: 2px solid teal;
+    padding: 10px;
+    border-radius: 15px;
+    transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
+    overflow: auto;
 
-    .h1{
+    &:hover {
+        box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.076);
+        transform: translateY(-0.5rem);
+    }
+
+    .h1 {
         text-align: center;
     }
 }

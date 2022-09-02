@@ -32,6 +32,7 @@ export default function PostList({ items, title, AddNewPost, removePost, default
         defaultValue='Sorting by'  
           />
 
+      <hr/>
       <h1>{title}</h1>
 
       {

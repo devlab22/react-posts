@@ -23,13 +23,13 @@ export default function PostForm({onAddNewPost, title}) {
       <form>
         <MyInput
           type="text"
-          placeholder="title"
+          placeholder="Title"
           value={post.title}
           onChange={event => setPost({...post, title: event.target.value} )}
         />
         <MyInput
           type="text"
-          placeholder="description"
+          placeholder="Description"
           value={post.text}
           onChange={event => setPost({...post, text: event.target.value} )}
         />

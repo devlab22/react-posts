@@ -11,7 +11,7 @@ export default function PostItem({id, title, text, removePost}) {
                 <div>{text}</div>
             </div>
             <div className="post__btn">
-                <MyButton onClick={() => removePost(id)}>delete</MyButton>
+                <MyButton onClick={() => removePost(id)}>remove</MyButton>
             </div>
         </div>
     )
