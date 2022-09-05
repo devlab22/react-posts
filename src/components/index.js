@@ -5,3 +5,4 @@ export { default as MyButton } from './UI/button';
 export { default as MyInput } from './UI/input';
 export { default as PostForm } from './PostForm';
 export { default as MySelect } from './UI/select';
+export { default as PostFilter } from './PostFilter';

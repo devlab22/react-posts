@@ -1,46 +1,68 @@
-import React from 'react';
-import { PostItem, PostForm, MySelect } from '../../components';
+import React, { useEffect, useState, useMemo } from 'react';
+import { PostItem, PostForm, PostFilter } from '../../components';
 
 import './PostList.scss';
 
-export default function PostList({ items, title, AddNewPost, removePost, defaultPost='posts not found' }) {
+export default function PostList({ items, title, defaultPost = 'posts not found' }) {
+
+  const [posts, setPosts] = useState([]);
+  const [filter, setFilter] = useState({ sort: '', search: '' })
+
+  useEffect(() => {
+    setPosts(items);
+  }, [items])
+
+  const sortedItems = useMemo(() => {
+    
+    if (filter.sort) {
+      return [...posts].sort((a, b) => a[filter.sort].toString().localeCompare(b[filter.sort].toString()));
+    }
+    else {
+      return posts;
+    }
+
+  }, [filter.sort, posts])
+
+  const sortedAndSearchItems = useMemo(() => {
+    return sortedItems.filter(item => item.title.toLowerCase().includes(filter.search.toLowerCase()))
+  }, [filter.search, sortedItems])
+
+  const handleOnRemovePost = (id) => {
+    setPosts(prev => prev.filter(post => post.id !== id))
+  }
 
   const handleOnAddNewPost = (post) => {
-    
-    AddNewPost(
-      {
-        'id': Math.max(...items.map(o => o.id)) + 1,
-        'title': post.title,
-        'text': post.text
-      }
-    );
-    
+
+    post.id = Math.max(...posts.map(o => o.id)) + 1;
+    setPosts(prev => [...prev, post]);
+
   }
 
   return (
     <div className='postList'>
 
-      <PostForm title={`add new post for ${title}`} onAddNewPost={handleOnAddNewPost}/>
-      <hr/>
+      <PostForm title={`add new item for ${title}`} onAddNewPost={handleOnAddNewPost} />
       
-      <MySelect 
-          options={[
-        {'key': 'id', 'value': 'id'},
-        {'key': 'title', 'value': 'Title'},
-        {'key': 'descr', 'value': 'Description'}
-          ]}
-        defaultValue='Sorting by'  
-          />
-
-      <hr/>
+      <PostFilter
+        filter={filter}
+        setFilter={setFilter}
+        options={[
+          { 'key': 'id', 'value': 'id' },
+          { 'key': 'title', 'value': 'Title' },
+          { 'key': 'text', 'value': 'Description' }
+        ]}
+      />
+      
       <h1>{title}</h1>
 
       {
-        items.length > 0 
-         ? (items.map(item =>
-          <PostItem key={item.id} {...item} removePost={removePost}/>
-        ))
-        : <h2>{defaultPost}</h2>
+        sortedAndSearchItems.length > 0
+          ? (
+            sortedAndSearchItems
+              .map(item =>
+                <PostItem key={item.id} {...item} removePost={handleOnRemovePost} />
+              ))
+          : <h2>{defaultPost}</h2>
       }
     </div>
   )
