@@ -3,11 +3,12 @@
     margin: 15px 0;
     padding: 10px;
     border-radius: 10px;
+    width: 800px;
     transition: box-shadow 0.2s ease-in-out, transform 0.2s ease-in-out;
     overflow: auto;
 
     &:hover {
         box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.076);
-        transform: translateY(-0.5rem);
+        // transform: translateY(-0.5rem);
     }
 }

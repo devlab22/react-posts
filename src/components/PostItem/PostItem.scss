@@ -1,4 +1,4 @@
-.post{
+.post {
    display: flex;
    padding: 15px;
    border: 2px solid teal;
@@ -12,7 +12,15 @@
 
    &:hover {
       box-shadow: 0 1.5rem 2rem rgba(0, 0, 0, 0.076);
-      transform: translateY(-0.5rem);
-    }   
+      // transform: translateY(-0.5rem);
+   }
 
+   .id {
+      margin-left: 5px;
+      visibility: hidden;
+   }
+
+   .post__btn{
+      display: flex;
+   }
 }

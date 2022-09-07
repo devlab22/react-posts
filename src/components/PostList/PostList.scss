@@ -1,18 +1,37 @@
-.postList{
-    h1{
+.postList {
+    h1 {
         text-align: center;
         color: teal;
     }
 
-    h2{
+    h2 {
         text-align: center;
         color: teal;
     }
 
-    hr{
+    hr {
         margin: 15px 0;
         height: 2px;
         background-color: teal;
         border: none;
     }
+
+}
+
+.post-enter {
+    transform: translateX(-550px);
+}
+
+.post-enter-active {
+    transform: translateX(0);
+    transition: all 500ms ease-in;
+}
+
+.post-exit {
+    opacity: 1;
+}
+
+.post-exit-active {
+    transform: translateX(-550px);
+    transition: all 500ms ease-in;
 }

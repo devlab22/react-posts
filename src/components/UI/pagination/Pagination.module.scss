@@ -1,0 +1,26 @@
+.page__wrapper{
+
+    margin: 30px 0;  
+    display: flex;
+    align-items: center;  
+    justify-content: center;
+    position: sticky;
+    bottom: 0;  
+
+
+    .page{
+      background-color: aquamarine;
+      padding: 10px;
+      margin-right: 5px;
+      border: 1px solid teal;
+      border-radius: 10px;
+      cursor: pointer;
+      
+    }
+
+    .page__current{
+      border: 2px solid orange;
+      font-weight: bold;
+      
+    }
+  }
