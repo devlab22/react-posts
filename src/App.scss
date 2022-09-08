@@ -10,37 +10,3 @@
   align-items: center;
 }
 
-.Home{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-}
-
-.About{
-  display: flex;
-  align-items: center;
-  justify-content: center;
-
-}
-.Posts {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
-}
-.error{
-  display: flex;
-  justify-content: center;
-
-  h1{
-      color: red;
-  }
-}
-
-.App {
-
-  .loader {
-    margin-top: 40px;
-  }
-
-}

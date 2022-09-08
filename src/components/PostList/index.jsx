@@ -5,7 +5,7 @@ import { PostItem, PostForm, PostFilter, PostFormModal, MyButton, usePosts } fro
 
 import './PostList.scss';
 
-export default function PostList({ items, title, defaultPost = 'items not found' }) {
+export default function PostList({ items, title, defaultPost = 'items not found', params, setParams }) {
 
   const [posts, setPosts] = useState([]);
   const [filter, setFilter] = useState({ sort: '', search: '' });
@@ -38,6 +38,8 @@ export default function PostList({ items, title, defaultPost = 'items not found'
       <PostFilter
         filter={filter}
         setFilter={setFilter}
+        params={params}
+        setParams={setParams}
         options={[
           { 'key': 'id', 'value': 'ID' },
           { 'key': 'title', 'value': 'Title' },
@@ -61,8 +63,9 @@ export default function PostList({ items, title, defaultPost = 'items not found'
                   <PostItem  {...item} removePost={handleOnRemovePost} />
                 </CSSTransition>
               ))
-
+            
           }
+
         </TransitionGroup>
 
         : <h2>{defaultPost}</h2>

@@ -1,17 +1,31 @@
-import { Navbar, AppRouter } from './components';
+import { Navbar, AppRouter, AppContext } from './components';
 
 import './App.scss'
+import { useEffect, useState } from 'react';
 
 function App() {
 
+  const [isAuth, setIsAuth] = useState(false);
+
+  useEffect(() => {
+      if(localStorage.getItem('auth')){
+        setIsAuth(true);
+      }
+      
+  }, [])
+
   return (
 
-    <div className='App'>
+    <AppContext.Provider value={{
+      isAuth, setIsAuth
+    }}>
 
-      <Navbar />
-      <AppRouter />
+      <div className='App'>
+        <Navbar />
+        <AppRouter />
+      </div>
+    </AppContext.Provider>
 
-    </div>
 
   )
 
