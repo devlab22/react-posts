@@ -1,7 +1,9 @@
-import React, { useEffect, useRef, useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Circles } from 'react-loader-spinner';
 
-import { PostList, PostService, useFetching, Pagination, getPageCount, useObserver } from '../../components';
+import { PostList, PostService, useFetching, Pagination, getPageCount,
+  // useObserver 
+  } from '../../components';
 
 import './Pages.scss';
 
@@ -10,7 +12,7 @@ function Posts() {
   const [posts, setPosts] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
   const [params, setParams] = useState({ limit: 10, page: 1, observer: false })
-  const lastElement = useRef();
+  //const lastElement = useRef();
 
 
   const [getPosts, isLoading, error] = useFetching(async () => {
@@ -32,6 +34,7 @@ function Posts() {
   useEffect(() => {
     getPosts();
 
+  // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.page, params.limit]);
 
   if (error) {
