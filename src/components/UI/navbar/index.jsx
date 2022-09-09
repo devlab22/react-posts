@@ -20,10 +20,10 @@ export default function Navbar() {
         <div className={styles.navbar}>
             <MyButton onClick={onLogout}>logout</MyButton>
             <div className={styles.navbar__links}>
-                <Link to='/'>Home</Link>
-                <Link to='/login'>Login</Link>
-                <Link to='/posts'>Posts</Link>
-                <Link to='/about'>About</Link>
+                <Link className={styles.navbar__links} to='/'>Home</Link>
+                <Link className={styles.navbar__links} to='/login'>Login</Link>
+                <Link className={styles.navbar__links} to='/posts'>Posts</Link>
+                <Link className={styles.navbar__links} to='/about'>About</Link>
 
             </div>
         </div>

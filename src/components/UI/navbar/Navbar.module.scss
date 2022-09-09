@@ -9,5 +9,14 @@
   }
 
   .navbar__links {
-    margin-left: auto;
+   margin-left: auto;
+   margin-right: 5px;
+   text-decoration: none;
+   color: teal;
+
+   &:hover{
+    color: darken(teal, 40%);
+   }
+
+   
   }
