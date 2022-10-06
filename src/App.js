@@ -7,6 +7,24 @@ function App() {
 
   const [isAuth, setIsAuth] = useState(false);
 
+
+  window.addEventListener('beforeunload', (e) => {
+    e.preventDefault()
+    e.returnValue = ''
+  })
+
+  window.addEventListener('load', async (e) => {
+     localStorage.setItem('refresh', true)
+  })
+
+  window.addEventListener('close', async (e) => {
+
+  })
+  window.addEventListener('unload', async (e) => {
+
+  })
+
+
   useEffect(() => {
     if (localStorage.getItem('auth')) {
       setIsAuth(true);
