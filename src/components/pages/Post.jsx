@@ -9,6 +9,7 @@ export default function Post() {
 
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
+  const [dashboards, setDashboards] = useState({ count: 0, server: "demo"});
 
   const params = useParams();
 
@@ -22,9 +23,16 @@ export default function Post() {
     setComments(response.data)
   })
 
+  const [fetchDashboards, isLoadingDB, errorDB] = useFetching(async () => {
+      const response = await PostService.getDashboards();
+      console.log(response.data)
+      setDashboards(response.data)
+  })
+
   useEffect(() => {
     fetchPostById();
     fetchCommentsById();
+    //fetchDashboards()
 
   }, []);
 
@@ -85,6 +93,40 @@ export default function Post() {
               </div>
               ))
             }
+              
+          </div>
+
+      }
+
+      <h1>Dashboards</h1>
+
+      {
+        isLoadingDB
+          ? <div className='loader'>
+            <Circles
+              height="100"
+              width="100"
+              color="#008080"
+              ariaLabel="circles-loading"
+              wrapperStyle={{}}
+              wrapperClass=""
+              visible={true}
+            />
+          </div>
+          :
+          <div>
+            
+           <p>{`count: ${dashboards.count}`}</p> 
+           <p>{`server: ${dashboards.server}`}</p> 
+
+           {
+            Array.isArray(dashboards.dashboards) && dashboards.dashboards.map((item, index) => (
+              <div key={index}> 
+                <p>{`login: ${item.login}`}</p>
+              </div>
+            ))
+           }
+           
               
           </div>
 

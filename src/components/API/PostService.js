@@ -24,4 +24,10 @@ export default class PostService{
         const response = await axios.get(`https://jsonplaceholder.typicode.com/posts/${id}/comments`);
         return response;
     }
+
+    static async getDashboards(){
+
+        const response = await axios.get('http://192.168.143.254:8090/api/meraki');
+        return response;
+    }
 }
