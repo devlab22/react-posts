@@ -9,7 +9,7 @@ export default function Post() {
 
   const [post, setPost] = useState({});
   const [comments, setComments] = useState([]);
-  const [dashboards, setDashboards] = useState({ count: 0, server: "demo"});
+  const [dashboards, setDashboards] = useState({ count: 0, server: "demo" });
 
   const params = useParams();
 
@@ -24,9 +24,8 @@ export default function Post() {
   })
 
   const [fetchDashboards, isLoadingDB, errorDB] = useFetching(async () => {
-      const response = await PostService.getDashboards();
-      console.log(response.data)
-      setDashboards(response.data)
+    const response = await PostService.getDashboards();
+    setDashboards(response.data)
   })
 
   useEffect(() => {
@@ -87,13 +86,13 @@ export default function Post() {
           <div>
             {
               comments.map(comment => (
-              <div key={comment.id}>
-                <h5>{comment.email}</h5>
-                <div>{comment.body}</div>
-              </div>
+                <div key={comment.id}>
+                  <h5>{comment.email}</h5>
+                  <div>{comment.body}</div>
+                </div>
               ))
             }
-              
+
           </div>
 
       }
@@ -115,19 +114,25 @@ export default function Post() {
           </div>
           :
           <div>
-            
-           <p>{`count: ${dashboards.count}`}</p> 
-           <p>{`server: ${dashboards.server}`}</p> 
 
-           {
-            Array.isArray(dashboards.dashboards) && dashboards.dashboards.map((item, index) => (
-              <div key={index}> 
-                <p>{`login: ${item.login}`}</p>
-              </div>
-            ))
-           }
-           
-              
+            <p>{`count: ${dashboards.count}`}</p>
+            <p>{`server: ${dashboards.server}`}</p>
+
+            {
+              Array.isArray(dashboards.dashboards) && dashboards.dashboards.map((item, index) => (
+                <div key={index}>
+                  <br></br>
+                  <p>{`login: ${item.login}`}</p>
+                  <p>{`token: ${item.token}`}</p>
+                  <p>{`login Time: ${item.loginTime}`}</p>
+                  <p>{`logout Time: ${item.logoutTime}`}</p>
+                  <p>{`last action Time: ${item.lastActionTime}`}</p>
+
+                </div>
+              ))
+            }
+
+
           </div>
 
       }

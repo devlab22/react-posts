@@ -19,10 +19,11 @@ export default function Login() {
     context.setIsAuth(true);
 
     const token = uuidv4()
+
+    const credentials = btoa(`${username}:${password}`);
     const params = {
         "token": token,
-        "username": username,
-        "password": password
+        "credentials": credentials
     }
 
     try{

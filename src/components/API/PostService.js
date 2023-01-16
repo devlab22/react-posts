@@ -24,10 +24,16 @@ export default class PostService{
     }
 
     static async login(params){
-        const response = await axios.post('http://localhost:8080/api/login', {
-            params: params
-        })
+        const response = await axios.post('http://localhost:8080/api/login', 
+            params
+        )
         return response;
+    }
+
+    static async getDashboards(){
+        const response = await axios.get('http://localhost:8080/api/'
+    )
+    return response;
     }
 
     static async logout(token){
