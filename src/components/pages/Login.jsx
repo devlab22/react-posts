@@ -28,7 +28,7 @@ export default function Login() {
 
     try{
       
-      const response = await PostService.login(params)
+      //const response = await PostService.login(params)
       localStorage.setItem('auth', 'true');
       localStorage.setItem('token', token)
       navigate('/posts');

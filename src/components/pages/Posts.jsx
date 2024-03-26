@@ -11,6 +11,7 @@ function Posts() {
 
   const [posts, setPosts] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
+  const [limit, setLimit] = useState(10)
   const [params, setParams] = useState({ limit: 10, page: 1, observer: false })
   //const lastElement = useRef();
 
@@ -32,6 +33,11 @@ function Posts() {
    }) */
 
   useEffect(() => {
+    
+    if(limit !== params.limit){
+      setLimit(params.limit)
+      params.page = 1
+    }
     getPosts();
 
   // eslint-disable-next-line react-hooks/exhaustive-deps
