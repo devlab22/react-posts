@@ -20,3 +20,4 @@ export { default as AppRouter } from './AppRouter';
 export { default as AppContext } from './context';
 export { useObserver } from './hooks/useObserver';
 export {default as MyProgressBar} from './UI/progressbar';
+export {default as PagePagination} from './UI/PagePagination.jsx'

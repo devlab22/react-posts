@@ -10,23 +10,6 @@ function App() {
   const [isAuth, setIsAuth] = useState(false);
   const navigate = useNavigate();
 
-  window.addEventListener('beforeunload', (e) => {
-    e.preventDefault()
-    e.returnValue = ''
-  })
-
-  /* window.addEventListener('close', async (e) => {
-    await handleOnLogout();
-  }) */
-
-  /* window.addEventListener('load', async (e) => {
-     localStorage.setItem('refresh', true)
-  }) */
-
-  window.addEventListener('unload', async (e) => {
-    await handleOnLogout();
-  })
-
   const handleOnLogout = async () => {
 
     try {
@@ -37,8 +20,8 @@ function App() {
         return
       }
 
-      //console.log(token)
-      const response = await PostService.logout(token)
+      console.log(token)
+     // const response = await PostService.logout(token)
       setIsAuth(false);
       localStorage.removeItem('auth');
       localStorage.removeItem('token')
@@ -49,8 +32,6 @@ function App() {
     catch (err) {
       console.log(err.message)
     }
-
-
 
   }
 

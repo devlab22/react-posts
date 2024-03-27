@@ -1,7 +1,7 @@
 import React, { useContext } from 'react';
 import { useState } from 'react';
 import { useNavigate } from 'react-router-dom';
-import { MyInput, MyButton, AppContext, MyProgressBar, PostFormModal, PostService } from '../../components';
+import { MyInput, MyButton, AppContext, MyProgressBar, PostFormModal } from '../../components';
 import {v4 as uuidv4} from 'uuid'
 
 import './Pages.scss';
@@ -25,10 +25,9 @@ export default function Login() {
         "token": token,
         "credentials": credentials
     }
-
+    console.log(params)
     try{
       
-      //const response = await PostService.login(params)
       localStorage.setItem('auth', 'true');
       localStorage.setItem('token', token)
       navigate('/posts');

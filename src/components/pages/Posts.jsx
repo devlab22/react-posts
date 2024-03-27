@@ -1,9 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Circles } from 'react-loader-spinner';
-
-import { PostList, PostService, useFetching, Pagination, getPageCount,
-  // useObserver 
-  } from '../../components';
+import {Stack} from '@mui/material'
+import { PostList, PostService, useFetching, Pagination, getPageCount, PagePagination } from '../../components';
 
 import './Pages.scss';
 
@@ -13,7 +11,6 @@ function Posts() {
   const [totalPages, setTotalPages] = useState(0);
   const [limit, setLimit] = useState(10)
   const [params, setParams] = useState({ limit: 10, page: 1, observer: false })
-  //const lastElement = useRef();
 
 
   const [getPosts, isLoading, error] = useFetching(async () => {
@@ -27,10 +24,6 @@ function Posts() {
     const totalCount = response.headers['x-total-count'];
     setTotalPages(getPageCount(totalCount, params.limit));
   })
-
-  /*  useObserver(lastElement, params.page < totalPages, isLoading, () => {
-     setParams({...params, page: params.page + 1})
-   }) */
 
   useEffect(() => {
     
@@ -47,6 +40,10 @@ function Posts() {
     return (
       <h1>{error}</h1>
     )
+  }
+
+  const handleOnChange = (page, limit) => {
+    setParams(prev => ({...prev, page: page, limit: limit}))
   }
 
   return (
@@ -67,11 +64,27 @@ function Posts() {
           </div>
           :
           <div>
-            <PostList items={posts} title="Posts" params={params} setParams={setParams} />
 
-            {/* <div ref={lastElement} style={{ height: 20 }}></div> */}
-            <Pagination totalPages={totalPages} params={params} setParams={setParams} />
+            <Stack
+              gap={2}
+            >
+            <PostList 
+              items={posts} 
+              title="Posts" 
+               />
+
+            {/* <Pagination totalPages={totalPages} params={params} setParams={setParams} /> */}
+            <PagePagination 
+              count={totalPages} 
+              onChange={handleOnChange} 
+              page={params.page} 
+              limit={params.limit} 
+              label='Posts per Page'
+              itemsPerPage={[5, 10, 25, 50]}
+              />
+              </Stack>
           </div>
+          
       }
 
     </div>
