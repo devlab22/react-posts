@@ -75,7 +75,7 @@ function Posts() {
 
             {/* <Pagination totalPages={totalPages} params={params} setParams={setParams} /> */}
             <PagePagination 
-              count={totalPages} 
+              totalPages={totalPages} 
               onChange={handleOnChange} 
               page={params.page} 
               limit={params.limit} 
