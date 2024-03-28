@@ -42,8 +42,11 @@ function Posts() {
     )
   }
 
-  const handleOnChange = (page, limit) => {
-    setParams(prev => ({...prev, page: page, limit: limit}))
+  const handleOnChangePage = (page) => {
+    setParams(prev => ({...prev, page: page}))
+  }
+  const handleOnChangeItemsPerPage = (limit) => {
+    setParams(prev => ({...prev, limit: limit}))
   }
 
   return (
@@ -76,7 +79,8 @@ function Posts() {
             {/* <Pagination totalPages={totalPages} params={params} setParams={setParams} /> */}
             <PagePagination 
               totalPages={totalPages} 
-              onChange={handleOnChange} 
+              onChangePage={handleOnChangePage} 
+              onChangeItemsPerPage={handleOnChangeItemsPerPage}
               page={params.page} 
               limit={params.limit} 
               label='Posts per Page'

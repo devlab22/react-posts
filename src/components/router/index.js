@@ -14,6 +14,7 @@ export const privateRoutes = [
 export const publicRoutes = [
     {path: '/about', component: <About/>, exact: true},
     {path: '/', component: <Home/>, exact: true},
-    {path: '*', component: <Error message="Page not found"/>, exact: true},
     {path: '/login', component: <Login />, exact: true},
+    {path: '*', component: <Error message="Page not found"/>, exact: true},
+    
 ]
