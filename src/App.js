@@ -23,8 +23,8 @@ function App() {
       console.log(token)
      // const response = await PostService.logout(token)
       setIsAuth(false);
-      localStorage.removeItem('auth');
-      localStorage.removeItem('token')
+      sessionStorage.removeItem('auth');
+      sessionStorage.removeItem('token')
       navigate('/login');     
 
     }
@@ -37,7 +37,7 @@ function App() {
 
   useEffect(() => {
     if (localStorage.getItem('auth')) {
-      setIsAuth(true);
+     // setIsAuth(true);
     }
 
   }, [])

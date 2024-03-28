@@ -25,11 +25,12 @@ export default function Login() {
         "token": token,
         "credentials": credentials
     }
-    console.log(params)
+   // console.log(params)
     try{
       
-      localStorage.setItem('auth', 'true');
-      localStorage.setItem('token', token)
+      context.setIsAuth(true)
+      sessionStorage.setItem('auth', 'true');
+      sessionStorage.setItem('token', token)
       navigate('/posts');
     }
 

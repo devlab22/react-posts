@@ -7,10 +7,12 @@ export default function AppRouter() {
 
   const context = useContext(AppContext);
 
+  const isAuth = sessionStorage.getItem("auth") 
+
   return (
     <Routes>
       {
-        context.isAuth &&
+        isAuth &&
         privateRoutes.map(route =>
           <Route
             key={route.path}
