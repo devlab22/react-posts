@@ -2,7 +2,7 @@ import React from 'react'
 import { Pagination, Stack, Typography, Select, FormControl, MenuItem, Box, Card } from '@mui/material'
 
 export default function PagePagination({ totalPages = 1, page = 1, onChangePage=Function.prototype, onChangeItemsPerPage=Function.prototype, label = 'Items per Page', itemsPerPage = [10, 25, 50], limit = 10,
-    styles = { p: '5px 0', position: 'sticky', bottom: 0, background: '#f5f5f5', borderRadius: '20px', border: '2px solid teal' }, stylesPagination={ variant: "outlined", color: "secondary"} }) {
+    styles = { p: '5px 0', position: 'sticky', bottom: 0, background: '#f5f5f5', borderRadius: '20px', border: '2px solid teal' }, stylesPagination={ size: 'large', variant: "outlined", color: "secondary"} }) {
 
         const [raised, setRaised] = React.useState(false)
 

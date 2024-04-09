@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { Circles } from 'react-loader-spinner';
-import {Stack} from '@mui/material'
-import { PostList, PostService, useFetching, Pagination, getPageCount, PagePagination } from '../../components';
+import { Stack } from '@mui/material'
+import { PostList, PostService, useFetching, getPageCount, PagePagination } from '../../components';
 
 import './Pages.scss';
 
@@ -9,8 +9,12 @@ function Posts() {
 
   const [posts, setPosts] = useState([]);
   const [totalPages, setTotalPages] = useState(0);
-  const [limit, setLimit] = useState(10)
-  const [params, setParams] = useState({ limit: 10, page: 1, observer: false })
+  const [params, setParams] = useState({
+    limit: 10,
+    page: 1,
+    limitChanged: false,
+    observer: false
+  })
 
 
   const [getPosts, isLoading, error] = useFetching(async () => {
@@ -26,14 +30,13 @@ function Posts() {
   })
 
   useEffect(() => {
-    
-    if(limit !== params.limit){
-      setLimit(params.limit)
-      params.page = 1
+
+    if(params.limitChanged){
+      setParams(prev => ({ ...prev, page: 1, limitChanged: false }))
     }
     getPosts();
 
-  // eslint-disable-next-line react-hooks/exhaustive-deps
+    // eslint-disable-next-line react-hooks/exhaustive-deps
   }, [params.page, params.limit]);
 
   if (error) {
@@ -43,10 +46,10 @@ function Posts() {
   }
 
   const handleOnChangePage = (page) => {
-    setParams(prev => ({...prev, page: page}))
+    setParams(prev => ({ ...prev, page: page }))
   }
   const handleOnChangeItemsPerPage = (limit) => {
-    setParams(prev => ({...prev, limit: limit}))
+    setParams(prev => ({ ...prev, limit: limit, limitChanged: true }))
   }
 
   return (
@@ -71,24 +74,24 @@ function Posts() {
             <Stack
               gap={2}
             >
-            <PostList 
-              items={posts} 
-              title="Posts" 
-               />
-
-            {/* <Pagination totalPages={totalPages} params={params} setParams={setParams} /> */}
-            <PagePagination 
-              totalPages={totalPages} 
-              onChangePage={handleOnChangePage} 
-              onChangeItemsPerPage={handleOnChangeItemsPerPage}
-              page={params.page} 
-              limit={params.limit} 
-              label='Posts per Page'
-              itemsPerPage={[5, 10, 25, 50]}
+              <PostList
+                items={posts}
+                title="Posts"
               />
-              </Stack>
+
+              {/* <Pagination totalPages={totalPages} params={params} setParams={setParams} /> */}
+              <PagePagination
+                totalPages={totalPages}
+                onChangePage={handleOnChangePage}
+                onChangeItemsPerPage={handleOnChangeItemsPerPage}
+                page={params.page}
+                limit={params.limit}
+                label='Posts per Page'
+                itemsPerPage={[5, 10, 25, 50]}
+              />
+            </Stack>
           </div>
-          
+
       }
 
     </div>
